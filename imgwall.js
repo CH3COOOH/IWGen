@@ -7,22 +7,15 @@ function getHtml(url, async=false) {
 	xmlHttp.open("GET", url, async);
 	xmlHttp.send(null);
 	return xmlHttp.responseText
+
+
 }
 
-function selectorGen(){
-	var classify = {};
-	var rawLst = getHtml('itemList.htm').split('\n');
-	var currentClass = ''
+function selectorGen() {
 
-	for (var i of rawLst) {
-		var ii = i.replace(String.fromCharCode(13), '');
-		if (i[0] == '#') {
-			classify[ii] = [];
-			currentClass = ii;
-		} else {
-			classify[currentClass].push(ii);
-		}
-	}
-	return classify;
+	var pics = getHtml('itemList.json')
+	//console.log(pics)
+	return JSON.parse(pics)
+
 }
 

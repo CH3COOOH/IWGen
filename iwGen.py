@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import json
 
 import azLib as al
 
@@ -20,16 +21,12 @@ def fileStructure():
 
 def fileLstWriteOut(fname):
 	fs = fileStructure()
-	text = ''
-	for k in fs.keys():
-		text += '#%s\n' % k
-		for p in fs[k]:
-			text += '%s\n' % p
-	with open(fname, 'w') as o:
-		o.write(text.strip())
+	with open(fname,'w') as f:
+		f.write(json.dumps(fs))
+
 
 def main():
-	fileLstWriteOut('itemList.htm')
+	fileLstWriteOut('itemList.json')
 
 if __name__ == '__main__':
 	main()
