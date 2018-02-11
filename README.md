@@ -10,5 +10,5 @@ I am looking forward to seeing that this script is edited to the style which mak
 
 以上です。
 
-- Update
+[Update]
 2018.02.11 - Thumbnails are used thus the index would be loaded faster while you may need to install the damn PIL. (xx@xx: pip install pillow)
