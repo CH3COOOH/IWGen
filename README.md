@@ -9,3 +9,6 @@ Limited by my fucking poor knowledge of JS (as well as broken English, thus you 
 I am looking forward to seeing that this script is edited to the style which makes me cannot believe that this script comes from me.
 
 以上です。
+
+Update:
+2018.02.11 - Thumbnails are used thus the index would be loaded faster while you may need to install the damn PIL. (xx@xx: pip install pillow)
