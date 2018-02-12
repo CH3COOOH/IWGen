@@ -35,31 +35,30 @@
   </tr>
   <tr>
     <td><form name="classify" method="post" action="" width="100%">
-      <select name="select" onchange="selectionChange()">
+      <!-- <select name="select" onchange="selectionChange()"> -->
+        <select name="select">
       </select>
 
       <script src="imgwall.js"></script>
       <script>
-        var files = selectorGen();
+        var files = selectorGen();  // selectorGen() is in imgwall.js
         var selector = $('[name=select]');
         for (var k of Object.keys(files)) {
           selector.prepend(`<option>${k}</option>`);
-          console.log('Now add: '+k);
         }
         selector.prepend(`<option>--SELECT THE FOLDER--</option>`);
         selector.val('--SELECT THE FOLDER--');
-        function selectionChange() {
+        selector.change(function () {
           var currentSelection = selector.val();
           var wall = $('#imgwall');
           var imgHtml = '\n';
           for (var i of files[currentSelection]) {
-            imgHtml += (`<a href="${i[0]}" target="_blank"><img src="./thumb/${i[1]}" height="128" width="128"></a>\n`);
+            imgHtml += (`<a href="./viewer.htm?${i[0]}|${currentSelection}" target="_blank"><img src="./thumb/${i[1]}" height="128" width="128"></a>\n`);
           }
           wall.html(imgHtml);
-        }
-        selectionChange();
-
+        });
       </script>
+
     </form></td>
   </tr>
   <tr>

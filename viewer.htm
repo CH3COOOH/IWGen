@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>$[TITLE]</title>
+	<style type="text/css">
+	<!--
+	body {background-color: #000000;}
+	body,td,th {color: #FFFFFF;}
+	a:link {color: #FFFF00;}
+	a:visited {color: #66FF00;}
+	a:hover {color: #FFFF00;}
+	a:active {color: #FFFF00;}
+	-->
+	</style>
+	<script src="jquery.js"></script>
+</head>
+
+<body>
+<table border="0" align="center">
+	<tr><td>
+		<div align="center"></div>
+		<div align="center"><a href="" id="imgUrl"><img src="." id="mainImg" border="0"></a></div>
+	</td></tr>
+	<tr><td>
+		<div id="btn_page"></div>
+	</td></tr>
+
+	<script src="imgwall.js"></script>
+	<script>
+
+		// -- Image size --
+		var BORDER = 1.1;
+		var img = $('#mainImg');
+		var h = $(window).height()/BORDER;
+		var w = $(window).width()/BORDER;
+		if (h >= w) {
+			img.width(w);
+		} else {
+			img.height(h);
+		}
+
+		var href = location.href.split('?');
+		var [fname, cata] = href[1].split('|');		// Get current image's path and catalog from URL
+
+		var files = selectorGen()[cata];			// File list of current catalog
+		var files_originOnly = [];					// Without thumbnail's path. Pure string.
+
+		var pageBtnHtml = '';
+		var i = 1;
+		for (var p of files) {
+			pageBtnHtml += `<a href="${href[0]+'?'+p[0]+'|'+cata}">[${i}]</a>\n`;
+			files_originOnly.push(p[0]);
+			i += 1;
+		}											// Generate the page link list (html)
+
+		// -- Set Paths --
+		if (files_originOnly.indexOf(fname) == files.length-1) {
+			var href_next = `${href[0]}?${files_originOnly[0]}|${cata}`;
+		} else {
+			var href_next = `${href[0]}?${files_originOnly[files_originOnly.indexOf(fname)+1]}|${cata}`;
+		}
+		img.attr('src', fname);						// Set the image
+		$('#imgUrl').attr('href', href_next);		// Action of clicking the image
+		$('#btn_page').html(pageBtnHtml);			// Page links on the bottom
+		$('title').text(`${files_originOnly.indexOf(fname)}|${cata}`); 
+
+	</script>
+
+</table>
+</body>
+</html>
