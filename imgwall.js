@@ -1,3 +1,11 @@
+// function selectorGen() {
+// 	var pics;
+// 	$.getJSON('itemList.json').done(function (data) {
+// 		pics = data;
+// 	});
+// 	return pics
+// }
+
 function getHtml(url, async=false) {
 	if (window.XMLHttpRequest) {
 		xmlHttp = new XMLHttpRequest();

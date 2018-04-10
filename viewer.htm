@@ -27,7 +27,7 @@
 		<div id="btn_page"></div>
 	</td></tr>
 
-	<script src="imgwall.js"></script>
+	<!-- <script src="imgwall.js"></script> -->
 	<script>
 
 		// -- Image size --
@@ -44,7 +44,8 @@
 		var href = location.href.split('?');
 		var [fname, cata] = href[1].split('|');		// Get current image's path and catalog from URL
 
-		var files = selectorGen()[cata];			// File list of current catalog
+		// var files = selectorGen()[cata];			// File list of current catalog
+		var files = {{dict_files}};
 		var files_originOnly = [];					// Without thumbnail's path. Pure string.
 
 		var pageBtnHtml = '';

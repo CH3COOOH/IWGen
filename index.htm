@@ -13,7 +13,7 @@
   -->
   </style>
 
-  <script src="jquery.js"></script>
+  <script src="./jquery.js"></script>
 
 </head>
 
@@ -39,9 +39,10 @@
         <select name="select">
       </select>
 
-      <script src="imgwall.js"></script>
+      <!-- <script src="imgwall.js"></script> -->
       <script>
-        var files = selectorGen();  // selectorGen() is in imgwall.js
+        // var files = selectorGen();  // selectorGen() is in imgwall.js
+        var files = {{file_json}};
         var selector = $('[name=select]');
         for (var k of Object.keys(files)) {
           selector.prepend(`<option>${k}</option>`);
