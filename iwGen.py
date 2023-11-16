@@ -3,6 +3,7 @@
 # pillow, bottle, gevent
 
 import os
+import shutil
 import json
 from PIL import Image
 from bottle import route, run, template, static_file
@@ -25,12 +26,13 @@ def fileStructure():
 	classified = {}
 
 	print('Remove old thumbnail...')
-	os.system('./%s/*' % DIR_THUMB)
+	# os.system('rm ./%s/*' % DIR_THUMB)
+	shutil.rmtree(DIR_THUMB, ignore_errors=True)
+	os.mkdir(DIR_THUMB)
 
 	currentFolder = ''
 	for p in fileLst:
 		tmp = os.path.split(p)
-		print tmp
 		fname = tmp[-1]
 		folder = tmp[0]
 
@@ -76,7 +78,8 @@ def icon():
 def default(fname):
 	# name, ext = os.path.splitext(fname)
 	# if ext not in ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.gif', '.GIF']:
-	with open(fname, 'r') as o:
+	print(fname)
+	with open(fname, 'rb') as o:
 		return o.read()
 
 
