@@ -11,5 +11,6 @@ I am looking forward to seeing that this script is edited to the style which mak
 以上です。
 
 [Update]  
+2023.11.18 - Unicode characters in path is available now.  
 2018.02.11 - Thumbnails are used thus the index would be loaded faster while you may need to install the damn PIL. (xx@xx: pip install pillow)  
 2018.02.12 - Add preview mode. Considering of applying it to that hentai comic viewer.

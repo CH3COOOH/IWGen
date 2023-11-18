@@ -1,0 +1,4 @@
+*.db
+thumb
+__pycache__
+itemList.json

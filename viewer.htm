@@ -43,28 +43,30 @@
 
 		var href = location.href.split('?');
 		var [fname, cata] = href[1].split('|');		// Get current image's path and catalog from URL
+		fname = decodeURI(fname)
 
-		var files = selectorGen()[cata];			// File list of current catalog
+		var cata_decode = decodeURI(cata)
+		var files = selectorGen()[cata_decode];		// File list of current catalog
 		var files_originOnly = [];					// Without thumbnail's path. Pure string.
 
 		var pageBtnHtml = '';
 		var i = 1;
 		for (var p of files) {
-			pageBtnHtml += `<a href="${href[0]+'?'+p[0]+'|'+cata}">[${i}]</a>\n`;
+			pageBtnHtml += `<a href="${href[0]+'?'+p[0]+'|'+cata_decode}">[${i}]</a>\n`;
 			files_originOnly.push(p[0]);
 			i += 1;
 		}											// Generate the page link list (html)
 
 		// -- Set Paths --
 		if (files_originOnly.indexOf(fname) == files.length-1) {
-			var href_next = `${href[0]}?${files_originOnly[0]}|${cata}`;
+			var href_next = `${href[0]}?${files_originOnly[0]}|${cata_decode}`;
 		} else {
-			var href_next = `${href[0]}?${files_originOnly[files_originOnly.indexOf(fname)+1]}|${cata}`;
+			var href_next = `${href[0]}?${files_originOnly[files_originOnly.indexOf(fname)+1]}|${cata_decode}`;
 		}
 		img.attr('src', fname);						// Set the image
 		$('#imgUrl').attr('href', href_next);		// Action of clicking the image
 		$('#btn_page').html(pageBtnHtml);			// Page links on the bottom
-		$('title').text(`${files_originOnly.indexOf(fname)}|${cata}`); 
+		$('title').text(`${files_originOnly.indexOf(fname)}|${cata_decode}`); 
 
 	</script>
 
